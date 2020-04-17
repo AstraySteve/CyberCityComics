@@ -21,9 +21,11 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 //Handlebars
-app.engine("hadlebars", exphbs({defaultLayout: "main"}));
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
+//Routes
+require("./routes/htmlRoutes")(app);
 
 //Start the server
 app.listen(PORT, ()=>{
