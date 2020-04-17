@@ -8,6 +8,7 @@ module.exports = (app) =>{
         try{
             const response = await axios.get("http://xkcd.com/info.0.json");
             console.log(response.data);
+            res.json(response.data)
         }
         catch(error){
             console.error(error);
