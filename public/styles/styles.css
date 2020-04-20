@@ -1,0 +1,19 @@
+img{
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+article{
+    margin: auto;
+    border: 3px solid blue;
+    text-align: center;
+    padding: 10px;
+}
+
+#comic-display{
+    margin:auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px 0;
+}
