@@ -5,15 +5,10 @@
 //Javascript
 //Global Variables
 let currentURL = window.location.href;
-let currentLocation = "";
+let linkSplit = currentURL.split("/");
+let currentLocation = linkSplit[linkSplit.length - 1];
 
 //Functions
-const getLocation = () => {
-    //Function that retrieves the current weblink href
-    let linkSplit = currentURL.split("/");
-    currentLocation = linkSplit[linkSplit.length - 1];
-}
-
 const insertHTMLElement = (data) => {
     //Function to create the dynamic html element to insert
 
@@ -54,19 +49,53 @@ const fetchComic = () => {
     //Function that retrieves the comic api json for display
     let getAPI = "/getComic";
     if(currentLocation !== ""){
-        console.log(currentLocation);
+        //console.log(currentLocation);
         getAPI = `/getComic/${currentLocation}`;
     }
     fetch(getAPI).then(response => {
         //console.log(response);
         return response.json();
     }).then(data => {
-        console.log(data);
+        //console.log(data);
+        currentLocation = data.num;
         insertHTMLElement(data);
     }).catch(err => {
         console.error(err);
     });
 }
 
-getLocation();
+const buildDefaultLink = () => {
+    //Function that builds the default link
+    let defaultLink = "";
+    for (i=0;i<(linkSplit.length - 1);i++){
+        defaultLink = defaultLink + linkSplit[i] + "/";
+    }
+    return defaultLink;
+}
+
+const prevComic = () => {
+    //Function to retrieve previous comic
+    let prevIssue = parseInt(currentLocation) - 1;
+
+    if(prevIssue < 1){
+        //Already at first comic
+        prevIssue = 1;
+    }
+
+    //Redirect to new page
+    location.href = buildDefaultLink() + prevIssue;
+}
+
+const nextComic = () => {
+    //Function to retrieve the next comic
+    let nextIssue = parseInt(currentLocation) + 1;
+    //Redirect to new page
+    location.href = buildDefaultLink() + nextIssue;
+}
+
+const goToHome = () => {
+    //Function that redirect to home page
+    location.href = buildDefaultLink();
+}
+
 fetchComic();
