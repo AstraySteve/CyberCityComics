@@ -3,9 +3,18 @@
     Cyber City Comics
 */
 //Javascript
+//Global Variables
+let currentURL = window.location.href;
+let currentLocation = "";
 
 //Functions
-const insertHTMLElement = (data) =>{
+const getLocation = () => {
+    //Function that retrieves the current weblink href
+    let linkSplit = currentURL.split("/");
+    currentLocation = linkSplit[linkSplit.length - 1];
+}
+
+const insertHTMLElement = (data) => {
     //Function to create the dynamic html element to insert
 
     //Empties the "comic-page" DOM element
@@ -41,9 +50,13 @@ const insertHTMLElement = (data) =>{
     displayNode.appendChild(comicImg);
 }
 
-const fetchComic = () =>{
+const fetchComic = () => {
     //Function that retrieves the comic api json for display
     let getAPI = "/getComic";
+    if(currentLocation !== ""){
+        console.log(currentLocation);
+        getAPI = `/getComic/${currentLocation}`;
+    }
     fetch(getAPI).then(response => {
         //console.log(response);
         return response.json();
@@ -55,4 +68,5 @@ const fetchComic = () =>{
     });
 }
 
+getLocation();
 fetchComic();
