@@ -56,15 +56,16 @@ footer{
     background-color: #4a4a4a;
     width: 100%;
     font-size: 3em;
-    padding: 2rem 0;
+    padding: 1rem 0;
     color: white;
 }
 
 /* ID Selectors */
 #nav-bar{
-    border: 3px solid red;
+    /*border: 3px solid red;*/
     background-color: #4a4a4a;
     width: 100%;
+    padding: 2px 0;
 }
 
 #comic-display{

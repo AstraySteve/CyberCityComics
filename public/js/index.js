@@ -30,7 +30,6 @@ const insertHTMLElement = (data) => {
     let comicDate = document.createElement("p");
     comicDate.innerHTML = `Date Created: ${data.year}-${data.month}-${data.day}`
     comicHeader.appendChild(comicDate);
-
     displayNode.appendChild(comicHeader);
 
     //Building the <img> tag and appending it to the "comic-page" DOM element
@@ -39,8 +38,8 @@ const insertHTMLElement = (data) => {
     comicImg.alt = data.alt;
     displayNode.appendChild(comicImg);
 
+    //Getting transcript and placing it in <article>
     if(data.transcript !==""){
-        //Getting transcript and placing it in <article>
         let comicArticle = document.createElement("article")
         let transcript = data.transcript;
         if (transcript.length > 0){
