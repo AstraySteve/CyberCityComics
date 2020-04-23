@@ -12,6 +12,10 @@ body{
     height: 100vh;
 }
 
+header{
+    border: 3px solid red;
+}
+
 img{
     display: block;
     margin: auto;
