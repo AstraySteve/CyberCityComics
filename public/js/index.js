@@ -11,38 +11,46 @@ let currentLocation = linkSplit[linkSplit.length - 1];
 //Functions
 const insertHTMLElement = (data) => {
     //Function to create the dynamic html element to insert
+    
+    const displayNode = document.getElementById("comic-display");
 
     //Empties the "comic-page" DOM element
-    const displayNode = document.getElementById("comic-display");
-    while (displayNode.firstChild){
+    /*while (displayNode.firstChild){
         displayNode.removeChild(displayNode.firstChild);
-    }
+    }*/
     
-    //Building the <article> tag and appending it to the "comic-display" DOM element
-    let comicArticle = document.createElement("article")
+    //Building the <header> tag and appending it to the "comic-display" DOM element
+    let comicHeader = document.createElement("header")
 
     //Getting the Title and Issue Number
     let comicLable = document.createElement("h2")
     comicLable.innerHTML = `Issue # - ${data.num} : ${data.title}`;
-    comicArticle.appendChild(comicLable);
+    comicHeader.appendChild(comicLable);
     //Getting the Date
     let comicDate = document.createElement("p");
     comicDate.innerHTML = `Date Created: ${data.year}-${data.month}-${data.day}`
-    comicArticle.appendChild(comicDate);
-    //Getting transcript
-    let transcript = data.transcript;
-    if (transcript.length > 0){
-        let comicTranscript = document.createElement("p");
-        comicTranscript.innerHTML = transcript;
-        comicArticle.appendChild(comicTranscript);
-    }
-    displayNode.appendChild(comicArticle);
+    comicHeader.appendChild(comicDate);
+
+    displayNode.appendChild(comicHeader);
 
     //Building the <img> tag and appending it to the "comic-page" DOM element
     let comicImg = document.createElement("img");
     comicImg.src = data.img;
     comicImg.alt = data.alt;
     displayNode.appendChild(comicImg);
+
+    if(data.transcript !==""){
+        //Getting transcript and placing it in <article>
+        let comicArticle = document.createElement("article")
+        let transcript = data.transcript;
+        if (transcript.length > 0){
+            let comicTranscript = document.createElement("p");
+            comicTranscript.innerHTML = transcript;
+            comicArticle.appendChild(comicTranscript);
+        }
+        displayNode.appendChild(comicArticle);
+    }
+    
 }
 
 const fetchComic = () => {
@@ -96,6 +104,14 @@ const nextComic = () => {
 const goToHome = () => {
     //Function that redirect to home page
     location.href = buildDefaultLink();
+}
+
+const jumpPrompt = () => {
+    //Function that prompts the user which comic issue to jump to
+    let comicNumber = prompt(`Jump to comic issue:(1 - something)`);
+
+    console.log(comicNumber);
+    location.href = buildDefaultLink() + comicNumber;
 }
 
 fetchComic();

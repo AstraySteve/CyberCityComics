@@ -16,6 +16,7 @@ img{
     display: block;
     margin: auto;
     width: 50%;
+    padding: 3px 0;
 }
 
 button{
@@ -33,7 +34,7 @@ button{
 article{
     margin: auto;
     border: 3px solid blue;
-    text-align: center;
+    text-align: left;
     padding: 10px;
     white-space: pre-line;
 }

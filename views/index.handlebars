@@ -4,15 +4,13 @@
     </header>
 
     <nav id="nav-bar">
-        <button id="previous-button" onclick="prevComic()"><</button>
         <button onclick="goToHome()">Home</button>
+        <button id="previous-button" onclick="prevComic()"><</button>
+        <button id="jump-to-comic" onclick="jumpPrompt()">Jump to Comic #</button>
         <button id="next-button" onclick="nextComic()">></button>
-        <input type="text" placeholder="Search Comic #">
     </nav>
 
-    <div id="comic-display">
-        <p>Stuff Goes Here</p>
-    </div>
+    <div id="comic-display"></div>
 </div>
 <footer id="sticky-footer">
     <span>Steven Tran &copy Copyright 2020</span>
