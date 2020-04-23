@@ -20,10 +20,11 @@ const insertHTMLElement = (data) => {
     }*/
     
     //Building the <header> tag and appending it to the "comic-display" DOM element
-    let comicHeader = document.createElement("header")
+    let comicHeader = document.createElement("header");
+    comicHeader.className = "comic-header";
 
     //Getting the Title and Issue Number
-    let comicLable = document.createElement("h2")
+    let comicLable = document.createElement("h2");
     comicLable.innerHTML = `Issue # - ${data.num} : ${data.title}`;
     comicHeader.appendChild(comicLable);
     //Getting the Date
@@ -40,7 +41,7 @@ const insertHTMLElement = (data) => {
 
     //Getting transcript and placing it in <article>
     if(data.transcript !==""){
-        let comicArticle = document.createElement("article")
+        let comicArticle = document.createElement("article");
         let transcript = data.transcript;
         if (transcript.length > 0){
             let comicTranscript = document.createElement("p");
