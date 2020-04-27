@@ -7,6 +7,8 @@
 let currentURL = window.location.href;
 let linkSplit = currentURL.split("/");
 let currentLocation = linkSplit[linkSplit.length - 1];
+let getAPI = `/getComic/${currentLocation}`
+let latestComic = 0;
 
 //Functions
 const insertHTMLElement = (data) => {
@@ -25,7 +27,7 @@ const insertHTMLElement = (data) => {
 
     //Getting the Title and Issue Number
     let comicLable = document.createElement("h2");
-    comicLable.innerHTML = `Issue # - ${data.num} : ${data.title}`;
+    comicLable.innerHTML = `Issue # ${data.num} : ${data.title}`;
     comicHeader.appendChild(comicLable);
     //Getting the Date
     let comicDate = document.createElement("p");
@@ -50,16 +52,26 @@ const insertHTMLElement = (data) => {
         }
         displayNode.appendChild(comicArticle);
     }
-    
+}
+
+const getLatestComic = () => {
+    //Function that retrieves the latest comic
+    fetch("/getComic").then(response => {
+        return response.json();
+    }).then(data => {
+        latestComic = data.num;
+    }).catch(err => {
+        console.error(err);
+    });
 }
 
 const fetchComic = () => {
     //Function that retrieves the comic api json for display
-    let getAPI = "/getComic";
+    /*let getAPI = "/getComic";
     if(currentLocation !== ""){
         //console.log(currentLocation);
         getAPI = `/getComic/${currentLocation}`;
-    }
+    }*/
     fetch(getAPI).then(response => {
         //console.log(response);
         return response.json();
@@ -97,6 +109,9 @@ const prevComic = () => {
 const nextComic = () => {
     //Function to retrieve the next comic
     let nextIssue = parseInt(currentLocation) + 1;
+    if (nextIssue > latestComic){
+        nextIssue = latestComic;
+    }
     //Redirect to new page
     location.href = buildDefaultLink() + nextIssue;
 }
@@ -108,10 +123,18 @@ const goToHome = () => {
 
 const jumpPrompt = () => {
     //Function that prompts the user which comic issue to jump to
-    let comicNumber = prompt(`Jump to comic issue:(1 - something)`);
-
-    console.log(comicNumber);
-    location.href = buildDefaultLink() + comicNumber;
+    let comicNumber = prompt(`Jump to comic issue:(1 - ${latestComic})`);
+    //console.log(comicNumber);
+    if(comicNumber <= latestComic && comicNumber >= 1){
+        location.href = buildDefaultLink() + comicNumber;
+    }
+    else if(comicNumber > latestComic){
+        location.href = buildDefaultLink() + latestComic;
+    }
+    else{
+        location.href = buildDefaultLink() + 1;
+    }
 }
 
+getLatestComic();
 fetchComic();
