@@ -1,12 +1,16 @@
 # CyberCityComics
 
 Cyber City Comics is a website that is built using only base HTML, Javascript and CSS.
-The purpose of the website is to retrieved JSON data from the API: http://xkcd.com/info.0.json and display the comic image, title, date and any descriptions. 
-The website features the option to see past comics or allow the user to jump to an existing comic issue.
+The website displays 1 comic strip per page using the xkcd API https://xkcd.com/json.html, with the home page displaying the latest comic.
 
-### Constraints:
+### Programming Constraints:
  - Not allowed to use any CSS frameworks
  - Not allowed to use Jquery
+
+### Features:
+- Buttons to navagate from one comic to the next
+- Display the title and date when the comic was created
+- Ability to navagate to a specific comic strip through either a button or by including the comic issue # in the URL
 
 #### V1.001
  - Fixed a bug where invalid API requests are sent through
