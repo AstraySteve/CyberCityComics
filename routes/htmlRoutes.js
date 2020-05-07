@@ -1,6 +1,6 @@
 //HTML Routes
 module.exports = (app) =>{
-    let versionNum = 1.002;
+    let versionNum = 1.02;
     //home page
     app.get("/",(req,res)=>{
         res.render("index",{

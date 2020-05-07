@@ -11,6 +11,10 @@ The website displays 1 comic strip per page using the xkcd API https://xkcd.com/
 - Buttons to navagate from one comic to the next
 - Display the title and date when the comic was created
 - Ability to navagate to a specific comic strip through either a button or by including the comic issue # in the URL
+- Random button to navagate to a random comic strip
+
+### App Link
+https://cybercitycomic.herokuapp.com/
 
 #### V1.001
  - Fixed a bug where invalid API requests are sent through
@@ -20,6 +24,6 @@ The website displays 1 comic strip per page using the xkcd API https://xkcd.com/
  - Responsive web design added:
  - Added Media Queries to account for screens smaller than 768px (Mobile Phones)
 
-
-### App Link
-https://cybercitycomic.herokuapp.com/
+#### V1.02 (May 5, 2020)
+- Added "Random Button" feature
+- Fixed a display error with the transcript causing it to be unreadable

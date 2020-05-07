@@ -42,7 +42,8 @@ const insertHTMLElement = (data) => {
     displayNode.appendChild(comicImg);
 
     //Getting transcript and placing it in <article>
-    if(data.transcript !==""){
+    parseTranscript(data.transcript, displayNode);
+    /*if(data.transcript !==""){
         let comicArticle = document.createElement("article");
         let transcript = data.transcript;
         if (transcript.length > 0){
@@ -51,7 +52,24 @@ const insertHTMLElement = (data) => {
             comicArticle.appendChild(comicTranscript);
         }
         displayNode.appendChild(comicArticle);
+    }*/
+}
+
+const parseTranscript = (transcript, displayID) => {
+    //Funtion that parses JSON data (transcript) and insert <article> into HTML element ID (displayID)
+    let comicArticle = document.createElement("article");
+    if (transcript.length > 0){
+        let transcriptArray = transcript.split("\n");
+        console.log(transcriptArray);
+        for (i = 0; i < transcriptArray.length; i++){
+            //console.log(`${i} : ${transcriptArray[i]}`);
+            let comicTranscript = document.createElement("p");
+            comicTranscript.innerHTML = transcriptArray[i];
+            comicArticle.appendChild(comicTranscript);
+        }
     }
+    displayID.appendChild(comicArticle);
+
 }
 
 const getLatestComic = () => {
@@ -134,6 +152,12 @@ const jumpPrompt = () => {
     else{
         location.href = buildDefaultLink() + 1;
     }
+}
+
+const getRandomComic = () =>{
+    //Function that retrieves a random comic
+    let randomComic = Math.floor(Math.random()*(latestComic - 1)) + 1;
+    location.href = buildDefaultLink() + randomComic;
 }
 
 getLatestComic();
