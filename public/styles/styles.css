@@ -106,6 +106,9 @@ footer{
 /*Media Queries*/
 @media only screen and (max-width: 768px){
     /*For mobile phones: */
+    .jumbotron{
+        font-size: 2rem;
+    }
     #comic-display{
         width: 90%;
     }
